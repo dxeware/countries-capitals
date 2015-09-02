@@ -1,0 +1,73 @@
+body {
+  margin: 0 0;
+  font-family: "Lucida Grande", Arial, Serif;
+  color: #0099CC;
+}
+
+.flow {
+    display: flex;
+}
+
+.flow .title {
+  width: auto;
+  border-bottom: solid;
+}
+
+.flow .stretch {
+    flex: 1;
+}
+
+.title-heading {
+  height: 2em;
+  font-size: 48px;
+  text-align: center;
+  padding-top: 1em;
+  background-color: #fedf83;
+}
+
+.home {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8em 1em 0 1em;
+  text-align: center;
+  color: white;
+}
+
+.world {
+  height: 400px;
+  width: 600px;
+  margin: 2em auto;
+  background-image: url("./home/world3.jpg");
+  background-size: 600px 400px;
+  background-repeat: no-repeat;
+}
+
+button {
+  display: inline-block;
+  margin: 0 auto;
+  height: 3em;
+  width: 10em;
+  background-color: #0099CC;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  padding: 0 0;
+}
+
+
+
+@media (max-width: 800px) {
+  .title-heading {
+    height: 1.5em;
+    font-size: 32px;
+  }
+  .world {
+    height: 300px;
+    width: 500px;
+    background-size: 500px 300px;
+  }
+  .home {
+    padding-top: 5em;
+  }
+}
+

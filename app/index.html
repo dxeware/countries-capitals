@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ccApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Countries and Capitals</title>
+  <link href="cc-app.css" rel="stylesheet">
+</head>
+<body>
+  <header class="flow">
+    <div class="title stretch">
+      <div class="title-heading">Countries & Capitals</div>
+    </div>
+  </header>
+  <section>
+    <div class="page {{ pageClass }}" ng-view></div>
+  </section>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="cc-app.js"></script>
+
+</body>
+</html>
