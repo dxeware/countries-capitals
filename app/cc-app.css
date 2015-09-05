@@ -77,6 +77,14 @@ button {
   background-color: #ffff99;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  margin: 1em auto;
+}
+
 
 @media (max-width: 800px) {
   .title-heading {

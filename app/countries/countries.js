@@ -8,6 +8,7 @@ viewsModule
 
   .controller('CountriesCtrl', function($scope, $location, ccCountries) {
     $scope.pageClass = 'page-countries';
+    $scope.errorMsg = '';
 
     ccCountries()
       .success(function(result) {
@@ -16,7 +17,7 @@ viewsModule
       })
       .error(function() {
         debug('Geonames API errorMsg');
-        //$scope.errorMsg = "Error: the call to the server has FAILED!";
+        $scope.errorMsg = "Error: the call to the server has FAILED!";
       });
 
     //Call home route when button clicked
