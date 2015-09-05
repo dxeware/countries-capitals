@@ -1,11 +1,7 @@
-angular.module('ccApp', ['ngRoute', 'ngAnimate', 'ccLibrary'])
+angular.module('ccApp', ['ngRoute', 'ngAnimate', 'ccLibrary', 'ccAppViews'])
 
   .config(['$routeProvider',function($routeProvider) {
-    $routeProvider.when('/', {
-      templateUrl : 'home/home.html',
-      controller : 'HomeCtrl'
-    })
-    .when('/countries', {
+    $routeProvider.when('/countries', {
       templateUrl : 'countries/countries.html',
       controller : 'CountriesCtrl'
     })
@@ -14,15 +10,6 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate', 'ccLibrary'])
      })
     .otherwise('/error');
   }])
-  .controller('HomeCtrl', function($scope, $location) {
-    $scope.pageClass = 'page-home';
-
-    //Call countries route when button clicked
-    $scope.goCountries = function (path) {
-      $location.path(path);
-    };
-
-  })
 
   .controller('CountriesCtrl', function($scope, $location, ccCountries) {
     $scope.pageClass = 'page-countries';
