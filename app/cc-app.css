@@ -54,6 +54,28 @@ button {
   padding: 0 0;
 }
 
+.hoverTable{
+  width:90%;
+  border-collapse:collapse;
+  margin: 2em auto;
+}
+.hoverTable td, th{
+  padding:7px; border:#4e95f4 1px solid;
+  text-align: center;
+}
+
+.hoverTable th {
+  font-size: 18px;
+  border-bottom: double;
+}
+/* Define the default color for all the table rows */
+.hoverTable tr{
+  background: #b8d1f3;
+}
+/* Define the hover highlight color for the table row */
+.hoverTable .table-data:hover {
+  background-color: #ffff99;
+}
 
 
 @media (max-width: 800px) {
