@@ -8,7 +8,7 @@
       <th>Population</th>
       <th>Continent</th>
     </tr>
-    <tr class="table-data" ng-repeat="country in results.geonames">
+    <tr class="table-data" ng-repeat="country in results.geonames" ng-click="goDetail('/countries/' + country.countryCode + '/capital')">
       <td>{{ country.countryName }}</td>
       <td>{{ country.countryCode }}</td>
       <td>{{ country.capital }}</td>

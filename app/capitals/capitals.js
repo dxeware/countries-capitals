@@ -1,18 +1,18 @@
 viewsModule
   .config(function($routeProvider) {
-    $routeProvider.when('/countries', {
-      templateUrl : 'countries/countries.html',
-      controller : 'CountriesCtrl'
+    $routeProvider.when('/countries/:country/capital', {
+      templateUrl : 'capitals/capitals.html',
+      controller : 'CapitalsCtrl'
     });
   })
 
-  .controller('CountriesCtrl', function($scope, $location, ccCountries) {
-    $scope.pageClass = 'page-countries';
-    $scope.results = {};
-    $scope.errorMsg = '';
-    $scope.errPresent = false;
-    $scope.dataReady = false;
+  .controller('CapitalsCtrl', function($scope, $location, $routeParams) {
+    $scope.pageClass = 'page-capitals';
+    $scope.country = '';
 
+    $scope.country = $routeParams.country;
+
+/*
     ccCountries.getData().then(
       function(result) {
         // Check if an error message is present,
@@ -29,15 +29,5 @@ viewsModule
         $scope.errorMsg = "Error: the call to the server has FAILED!";
         $scope.errPresent = true;
       });
-
-    //Call home route when button clicked
-    $scope.goHome = function (path) {
-      $location.path(path);
-    };
-
-    //Call Detail route when table element clicked
-    $scope.goDetail = function (path) {
-      $location.path(path);
-    };
-
+*/
   });
