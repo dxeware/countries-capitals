@@ -44,7 +44,7 @@ body {
 
 button {
   display: inline-block;
-  margin: 0 auto;
+  margin: 1em auto;
   height: 3em;
   width: 10em;
   background-color: #0099CC;
@@ -83,6 +83,7 @@ button {
   font-size: 18px;
   display: inline-block;
   margin: 1em auto;
+  padding: 2em;
 }
 
 

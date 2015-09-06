@@ -1,5 +1,5 @@
 <section class="flow stretch" ng-controller="CountriesCtrl">
-  <table class="hoverTable">
+  <table class="hoverTable" ng-show="dataReady">
     <tr>
       <th>Name</th>
       <th>Country Code</th>
@@ -18,7 +18,7 @@
     </tr>
   </table>
 </section>
-<section class="flow stretch">
+<section class="flow stretch" ng-show="errPresent">
   <p class="error">{{ errorMsg }}</p>
 </section>
 <section class="flow stretch">

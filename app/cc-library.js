@@ -7,7 +7,7 @@ var debug = function(msg) {
 
 angular.module('ccLibrary', [])
 
-  .constant('CC_COUNTRY_INFO', 'http://api.geonames.org/countryInfoJSON?username=dxeware')
+  .constant('CC_COUNTRY_INFO', 'http://api.geonames.org/countryInfoJSON?userfname=dxeware')
 
   .factory('ccCountries', function($q, $http, CC_COUNTRY_INFO) {
     return {
