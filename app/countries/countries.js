@@ -8,15 +8,20 @@ viewsModule
 
   .controller('CountriesCtrl', function($scope, $location, ccCountries) {
     $scope.pageClass = 'page-countries';
+    $scope.results = {};
     $scope.errorMsg = '';
 
-    ccCountries()
-      .success(function(result) {
-        debug("Geonames API Success");
-        $scope.results = result;
-      })
-      .error(function() {
-        debug('Geonames API errorMsg');
+    ccCountries.getData().then(
+      function(result) {
+        // Check if an error message is present,
+        // otherwise display results
+        if ( result.status.message ) {
+          $scope.errorMsg = "Error: " + result.status.message;
+        } else {
+          $scope.results = result;
+        }
+      },
+      function() {
         $scope.errorMsg = "Error: the call to the server has FAILED!";
       });
 

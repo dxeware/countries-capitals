@@ -9,12 +9,24 @@ angular.module('ccLibrary', [])
 
   .constant('CC_COUNTRY_INFO', 'http://api.geonames.org/countryInfoJSON?username=dxeware')
 
-  .factory('ccCountries', function($http, CC_COUNTRY_INFO) {
-    return function() {
-      return $http({
-        cache : true,
-        method: 'GET',
-        url: CC_COUNTRY_INFO
-      });
+  .factory('ccCountries', function($q, $http, CC_COUNTRY_INFO) {
+    return {
+      getData: function() {
+        var deferred = $q.defer();
+        $http({
+          cache : true,
+          method: 'GET',
+          url: CC_COUNTRY_INFO
+        })
+        .success(function(result) {
+          debug("Geonames API Success");
+          deferred.resolve(result);
+        })
+        .error(function(result) {
+          debug('Geonames API errorMsg');
+          deferred.reject(result);
+        });
+        return deferred.promise;
+      }
     };
   });
