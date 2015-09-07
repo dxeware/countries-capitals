@@ -76,7 +76,7 @@ viewsModule
                       $scope.errPresent = true;
                     }
                   );
-                  $scope.dataReady = true;
+                  //$scope.dataReady = true;
                   //displayCapitalInfo();
                 }
               }
@@ -93,18 +93,6 @@ viewsModule
         $scope.errPresent = true;
       }
     );
-
-    function displayCapitalInfo() {
-      /* country name,
-      population of country,
-      area,
-      capital,
-      population of capital,
-      continent,
-      timezone and
-      number and names of neighbors.
-      */
-    };
 
     //Call home route when "Home" button clicked
     $scope.goHome = function (path) {
