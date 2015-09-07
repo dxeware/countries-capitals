@@ -1,8 +1,44 @@
-    <section>
-      <div class="image-array">
-        <p>Country page: {{ country }}</p>
-      </div>
-    </section>
-    <section class="flow stretch">
-      <p class="error">{{ errorMsg }}</p>
-    </section>
+<section ng-show="dataReady">
+  <section class="flow stretch">
+    <h1 class="capital-details">{{ thisCountryInfo.countryName }} ( {{ thisCountryInfo.countryCode }} )</h1>
+  </section>
+  <section class="flow stretch">
+    <table class="detailsTable">
+      <tr>
+        <td class="table-left">Population of Country</td>
+        <td class="table-right">{{ thisCountryInfo.population | number }}</td>
+      </tr>
+      <tr>
+        <td class="table-left">Area</td>
+        <td class="table-right">{{ thisCountryInfo.areaInSqKm | number }} square miles</td>
+      </tr>
+      <tr>
+        <td class="table-left">Capital</td>
+        <td class="table-right">{{ thisCountryInfo.capital }}</td>
+      </tr>
+      <tr>
+        <td class="table-left">Population of Capital</td>
+        <td class="table-right">{{ capitalInfo.population | number }}</td>
+      </tr>
+      <tr>
+        <td class="table-left">{{ neighbours.totalResultsCount }} neighbors</td>
+        <td class="table-right"><span ng-repeat="country in neighbours.geonames"><a ng-href="#/countries/{{ country.countryCode }}/capital">{{ country.countryName }}</a> </span></td>
+      </tr>
+    </table>
+  </section>
+  <section class="flow stretch images">
+    <div>
+      <img src="http://www.geonames.org/img/country/250/{{ thisCountryInfo.countryCode | uppercase }}.png" />
+      <img src="http://www.geonames.org/flags/x/{{ thisCountryInfo.countryCode | lowercase }}.gif" />
+    </div>
+  </section>
+</section>
+<section class="flow stretch" ng-show="errPresent">
+  <p class="error">{{ errorMsg }}</p>
+</section>
+<section class="flow stretch">
+  <button ng-click="goHome('/')">Home
+  </button>
+  <button ng-click="goCountries('/countries')">Browse Countries
+  </button>
+</section>

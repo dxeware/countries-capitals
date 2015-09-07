@@ -13,7 +13,7 @@ viewsModule
     $scope.errPresent = false;
     $scope.dataReady = false;
 
-    ccCountries.getData().then(
+    ccCountries().then(
       function(result) {
         // Check if an error message is present,
         // otherwise display results
@@ -28,7 +28,8 @@ viewsModule
       function() {
         $scope.errorMsg = "Error: the call to the server has FAILED!";
         $scope.errPresent = true;
-      });
+      }
+    );
 
     //Call home route when button clicked
     $scope.goHome = function (path) {

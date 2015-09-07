@@ -86,6 +86,48 @@ button {
   padding: 2em;
 }
 
+.capital-details {
+  font-size: 36px;
+  text-align: center;
+  margin: 1em auto;
+}
+
+.detailsTable {
+  width:80%;
+  border-style: none;
+  text-align: center;
+  margin: 1em auto;
+}
+
+.detailsTable td {
+  border-style: none;
+  padding: 0 20px;
+  font-size: 20px;
+}
+
+.table-left {
+  text-align: right;
+}
+
+.table-right {
+  text-align: left;
+}
+
+.images {
+  margin: auto auto;
+}
+
+.images div {
+  margin: 1em auto;
+  //display: inline-block;
+}
+
+img {
+  margin: auto 2em;
+  height: 100px;
+  width: 150px;
+}
+
 
 @media (max-width: 800px) {
   .title-heading {
