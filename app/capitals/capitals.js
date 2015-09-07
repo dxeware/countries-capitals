@@ -19,6 +19,7 @@ viewsModule
 
     $scope.country = $routeParams.country;
 
+
     ccCountries().then(
       function(result) {
         // Check if an error message is present,
@@ -94,6 +95,85 @@ viewsModule
       }
     );
 
+/*
+    var CapitalDetails = function( ccCountries, ccCapitals, ccNeighbours ) {
+      var getCountries = function() {
+        return ccCountries()                        // Request #1
+                .then( function( countriesResult ) {
+                        // Check if an error message is present,
+                        // otherwise find country in array and save
+                        if ( countriesResult.status ) {
+                          $scope.errorMsg = "Error: " + countriesResult.status.message + " [Error code: " + countriesResult.status.value + "]";
+                          $scope.errPresent = true;
+                          throw new Error('this is an error');
+                        } else {
+                          countryInfo = countriesResult;
+
+                          // Search array for matching country
+                          for (var i = 0; i < countryInfo.geonames.length; i++) {
+                            if ( countryInfo.geonames[i].countryCode === $routeParams.country ) {
+                              $scope.thisCountryInfo = countryInfo.geonames[i];
+                              return $scope.thisCountryInfo;
+                            }
+                          }
+
+                        }
+                          return $scope.thisCountryInfo;         // Response Handler #1
+                      },
+                      function() {
+                        $scope.errorMsg = "Error: the call to the server has FAILED!";
+                        $scope.errPresent = true;
+                      }
+                ); // then
+      },
+      getCapitals = function( capitalName, countryCode) {
+        return ccCapitals( capitalName, countryCode )                // Request #2
+                .then( function( capitalsResult ) {
+                        // Check if an error message is present,
+                        // otherwise display results
+                        if ( capitalsResult.status ) {
+                          $scope.errorMsg = "Error: " + capitalsResult.status.message + " [Error code: " + capitalsResult.status.value + "]";
+                          $scope.errPresent = true;
+                          throw new Error('this is an error');
+                        } else {
+                          if ( capitalsResult.geonames.length === 0 ) {
+                            $scope.errorMsg = "Error: No matching capital was found!";
+                            $scope.errPresent = true;
+                            throw new Error('this is an error');
+                          } else {
+                            $scope.capitalInfo = capitalsResult.geonames[0];
+                            return $scope.capitalInfo;
+                          }
+                        }
+                      },
+                      function() {
+                        $scope.errorMsg = "Error: the call to the server has FAILED!";
+                        $scope.errPresent = true;
+                      }
+                ); // then
+      },
+      getNeighbours = function( geonameId ) {
+        return ccNeighbours( geonameId )             // Request #3
+                .then( function( neighboursResult )
+                {
+                    $scope.neighbours = neighboursResult;       // Response Handler #3
+                    //return weather;
+                });
+      };
+
+      //debug("$scope = " + $scope);
+
+      getCountries()
+        .then( getCapitals( $scope.thisCountryInfo.capital, $routeParams.country ))
+          .then( getNeighbours( $scope.thisCountryInfo.geonameId ) );
+
+      $scope.dataReady = true;
+
+    };
+
+    CapitalDetails( ccCountries, ccCapitals, ccNeighbours );
+    debug("$scope = " + $scope);
+*/
     //Call home route when "Home" button clicked
     $scope.goHome = function (path) {
       $location.path(path);
@@ -103,5 +183,8 @@ viewsModule
     $scope.goCountries = function (path) {
       $location.path(path);
     };
+
+
+
 
   });
