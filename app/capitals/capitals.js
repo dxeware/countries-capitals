@@ -13,6 +13,8 @@ viewsModule
     $scope.errorMsg = '';
     $scope.dataReady = false;
     $scope.thisCountryInfo = {};
+    //$scope.thisCountryInfo.capital = 'Kabul';
+    //$scope.thisCountryInfo.countryCode = 'AF';
     $scope.capitalInfo = {};
     $scope.neighbours = {};
     var countryInfo = {};
@@ -24,10 +26,10 @@ viewsModule
       function(result) {
         // Check if an error message is present,
         // otherwise find country in array and save
-        if ( result.status ) {
+        /* if ( result.status ) {
           $scope.errorMsg = "Error: " + result.status.message + " [Error code: " + result.status.value + "]";
           $scope.errPresent = true;
-        } else {
+        } else { */
           countryInfo = result;
           //$scope.dataReady = true;
 
@@ -42,28 +44,32 @@ viewsModule
             function(result) {
               // Check if an error message is present,
               // otherwise display results
-              if ( result.status ) {
+              /* if ( result.status ) {
                 $scope.errorMsg = "Error: " + result.status.message + " [Error code: " + result.status.value + "]";
                 $scope.errPresent = true;
               } else {
                 if ( result.geonames.length === 0 ) {
                   $scope.errorMsg = "Error: No matching capital was found!";
                   $scope.errPresent = true;
-                } else {
+                } else { */
                   $scope.capitalInfo = result.geonames[0];
+                  $scope.dataReady = true;
+            }
+          ).catch(serverError); // then
+
 
                   ccNeighbours($scope.thisCountryInfo.geonameId).then(
                     function(result) {
                       // Check if an error message is present,
                       // otherwise display results
-                      if ( result.status ) {
+                      /* if ( result.status ) {
                         $scope.errorMsg = "Error: " + result.status.message + " [Error code: " + result.status.value + "]";
                         $scope.errPresent = true;
                       } else {
                         //if ( result.geonames.length === 0 ) {
                           //$scope.errorMsg = "Error: No matching capital was found!";
                           //$scope.errPresent = true;
-                        //} else {
+                        //} else { */
                           $scope.neighbours = result;
 
 
@@ -71,7 +77,7 @@ viewsModule
                           //displayCapitalInfo();
                         //}
                       }
-                    },
+                    /* },
                     function() {
                       $scope.errorMsg = "Error: the call to the server has FAILED!";
                       $scope.errPresent = true;
@@ -92,8 +98,24 @@ viewsModule
       function() {
         $scope.errorMsg = "Error: the call to the server has FAILED!";
         $scope.errPresent = true;
-      }
-    );
+      } */
+    ).catch(serverError); // then
+
+     }
+    /*).catch(function () {
+        debug("CATCH Error: the call to the server has FAILED!");
+        $scope.errorMsg = "CATCH Error: the call to the server has FAILED!";
+        $scope.errPresent = true;
+    }); //then
+*/
+
+    ).catch(serverError); //then
+
+    function serverError() {
+        debug("CATCH Error: the call to the server has FAILED!");
+        $scope.errorMsg = "CATCH Error: the call to the server has FAILED!";
+        $scope.errPresent = true;
+    }
 
 /*
     var CapitalDetails = function( ccCountries, ccCapitals, ccNeighbours ) {
@@ -126,8 +148,8 @@ viewsModule
                       }
                 ); // then
       },
-      getCapitals = function( capitalName, countryCode) {
-        return ccCapitals( capitalName, countryCode )                // Request #2
+      getCapitals = function() {
+        return ccCapitals( $scope.thisCountryInfo.capital, $scope.thisCountryInfo.countryCode )                // Request #2
                 .then( function( capitalsResult ) {
                         // Check if an error message is present,
                         // otherwise display results
@@ -142,7 +164,7 @@ viewsModule
                             throw new Error('this is an error');
                           } else {
                             $scope.capitalInfo = capitalsResult.geonames[0];
-                            return $scope.capitalInfo;
+                            return capitalsResult;
                           }
                         }
                       },
@@ -157,15 +179,15 @@ viewsModule
                 .then( function( neighboursResult )
                 {
                     $scope.neighbours = neighboursResult;       // Response Handler #3
-                    //return weather;
+                    return neighboursResult;
                 });
       };
 
       //debug("$scope = " + $scope);
 
       getCountries()
-        .then( getCapitals( $scope.thisCountryInfo.capital, $routeParams.country ))
-          .then( getNeighbours( $scope.thisCountryInfo.geonameId ) );
+        .then( getCapitals());
+          //.then( getNeighbours( $scope.thisCountryInfo.geonameId ) );
 
       $scope.dataReady = true;
 
