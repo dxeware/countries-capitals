@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td class="table-left">{{ neighbours.totalResultsCount }} neighbors</td>
-        <td class="table-right"><span ng-repeat="country in neighbours.geonames"><a ng-href="#/countries/{{ country.countryCode }}/capital">{{ country.countryName }}</a> </span></td>
+        <td class="table-right"><span ng-repeat="country in neighbours.geonames"><a ng-href="#/countries/{{ country.countryCode }}/capital">{{ country.countryName }}</a> </span><span ng-if="neighbours.errMsg != ''">{{neighbours.errMsg}}</span></td>
       </tr>
     </table>
   </section>

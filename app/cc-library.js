@@ -8,6 +8,7 @@ var debug = function(msg) {
 angular.module('ccLibrary', [])
 
   .constant('CC_USERNAME', 'username=dxeware')
+  .constant('CC_USERNAME2', 'username=dxe1ware')
   .constant('CC_COUNTRY_INFO', 'http://api.geonames.org/countryInfoJSON?')
   .constant('CC_SEARCH_PREFIX', 'http://api.geonames.org/searchJSON?')
   .constant('CC_Q', 'q=')
@@ -19,6 +20,12 @@ angular.module('ccLibrary', [])
   .factory('ccCountries', function(ccRequest, CC_COUNTRY_INFO, CC_USERNAME) {
     return function() {
       return ccRequest.getData(CC_COUNTRY_INFO+CC_USERNAME);
+    };
+  })
+
+  .factory('ccCountries2', function(ccRequest, CC_COUNTRY_INFO, CC_USERNAME2) {
+    return function() {
+      return ccRequest.getData(CC_COUNTRY_INFO+CC_USERNAME2);
     };
   })
 
