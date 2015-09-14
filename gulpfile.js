@@ -1,5 +1,9 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+var usemin = require('gulp-usemin');
+var minifyCss = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
+var rev = require('gulp-rev');
 //var gutil = require('gulp-util');
 
 // connect

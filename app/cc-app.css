@@ -77,6 +77,10 @@ button {
   background-color: #ffff99;
 }
 
+h1 {
+  margin: 1em auto;
+}
+
 .error {
   color: red;
   font-weight: bold;
@@ -128,33 +132,7 @@ img {
   width: 150px;
 }
 
-.rotator-container {
-  margin: 2em auto;
-  text-align: center;
-}
-
-.rotator {
-  width: 50px;
-  height: 50px;
-  display: block;
-  margin: auto;
-}
-
 /*-------- ANIMATIONS -------*/
-.rotator.ng-show-remove.ng-show-remove-active,
-.rotator.ng-show-add,
-.rotator-container.ng-show-remove.ng-show-remove-active,
-.rotator-container.ng-show-add {
-  opacity: 0;
-  transition: 0s all linear;
-}
-
-.rotator.ng-show-add.ng-show-add-active,
-.rotator-container.ng-show-add.ng-show-add-active {
-
-  transition: all 0.5s ease-in-out;
-  transform: rotate(-360deg);
-}
 
 /* Countries Table page ---------------------- */
 .page-countries.ng-leave {
