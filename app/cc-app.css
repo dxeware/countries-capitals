@@ -128,6 +128,92 @@ img {
   width: 150px;
 }
 
+.rotator-container {
+  margin: 2em auto;
+  text-align: center;
+}
+
+.rotator {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: auto;
+}
+
+/*-------- ANIMATIONS -------*/
+.rotator.ng-show-remove.ng-show-remove-active,
+.rotator.ng-show-add,
+.rotator-container.ng-show-remove.ng-show-remove-active,
+.rotator-container.ng-show-add {
+  opacity: 0;
+  transition: 0s all linear;
+}
+
+.rotator.ng-show-add.ng-show-add-active,
+.rotator-container.ng-show-add.ng-show-add-active {
+
+  transition: all 0.5s ease-in-out;
+  transform: rotate(-360deg);
+}
+
+/* Countries Table page ---------------------- */
+.page-countries.ng-leave {
+    -webkit-animation:slideOutLeft 0.5s both ease-in;
+    -moz-animation:slideOutLeft 0.5s both ease-in;
+    animation:slideOutLeft 0.5s both ease-in;
+}
+
+.page-countries.ng-enter {
+    -webkit-animation:slideInRight 0.5s both ease-in;
+    -moz-animation:slideInRight 0.5s both ease-in;
+    animation:slideInRight 0.5s both ease-in;
+    //animation-delay: 1s;
+}
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+  to    { transform: translateX(-100%); }
+}
+@-moz-keyframes slideOutLeft {
+  to    { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes slideOutLeft {
+  to    { -webkit-transform: translateX(-100%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from  { transform:translateX(100%); }
+  to    { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+  from  { -moz-transform:translateX(100%); }
+  to    { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+  from  { -webkit-transform:translateX(100%); }
+  to    { -webkit-transform: translateX(0); }
+}
+
+.page-capitals.ng-enter    {
+    -webkit-animation:slideInUp 1s both ease-in;
+  -moz-animation:slideInUp 1s both ease-in;
+  animation:slideInUp 1s both ease-in;
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+  from  { transform:translateY(100%); }
+  to    { transform: translateY(0); }
+}
+@-moz-keyframes slideInUp {
+  from  { -moz-transform:translateY(100%); }
+  to    { -moz-transform: translateY(0); }
+}
+@-webkit-keyframes slideInUp {
+  from  { -webkit-transform:translateY(100%); }
+  to    { -webkit-transform: translateY(0); }
+}
 
 @media (max-width: 800px) {
   .title-heading {

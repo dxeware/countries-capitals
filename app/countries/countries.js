@@ -12,9 +12,13 @@ viewsModule
     $scope.errorMsg = '';
     $scope.errPresent = false;
     $scope.dataReady = false;
+    $scope.showSpinner = true;
 
     ccCountries().then(
       function(result) {
+        //clear the Spinner animation
+        $scope.showSpinner = false;
+
         // Check if an error message is present,
         // otherwise display results
         if ( result.status ) {

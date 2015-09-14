@@ -32,13 +32,22 @@
       <img src="http://www.geonames.org/flags/x/{{ thisCountryInfo.countryCode | lowercase }}.gif" />
     </div>
   </section>
+  <section class="flow stretch">
+    <button ng-click="goHome('/')">Home
+    </button>
+    <button ng-click="goCountries('/countries')">Browse Countries
+    </button>
+  </section>
 </section>
-<section class="flow stretch" ng-show="errPresent">
-  <p class="error">{{ errorMsg }}</p>
+<section ng-show="errPresent">
+  <section class="flow stretch">
+    <p class="error">{{ errorMsg }}</p>
+  </section>
+  <section class="flow stretch">
+    <button ng-click="goHome('/')">Home
+    </button>
+    <button ng-click="goCountries('/countries')">Browse Countries
+    </button>
+  </section>
 </section>
-<section class="flow stretch">
-  <button ng-click="goHome('/')">Home
-  </button>
-  <button ng-click="goCountries('/countries')">Browse Countries
-  </button>
-</section>
+
