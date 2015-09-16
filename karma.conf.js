@@ -15,8 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './lib/angular.js',
-      './lib/angular-mocks.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-mocks.js',
+      './node_modules/requirejs/require.js',
       './app/**/*Spec.js',
       './app/*.js',
       './app/**/*.js'
@@ -25,7 +28,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-	'./app/bower_components/**/*.js'
+       './app/bower_components/**/*.js'
     ],
 
 
