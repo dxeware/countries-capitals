@@ -35,13 +35,8 @@ viewsModule
       }
     );
 
-    //Call home route when button clicked
-    $scope.goHome = function (path) {
-      $location.path(path);
-    };
-
-    //Call Detail route when table element clicked
-    $scope.goDetail = function (path) {
+    //Call route when button clicked
+    $scope.go = function (path) {
       $location.path(path);
     };
 

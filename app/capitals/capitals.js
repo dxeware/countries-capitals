@@ -83,17 +83,9 @@ viewsModule
         $scope.errPresent = true;
     }
 
-    //Call home route when "Home" button clicked
-    $scope.goHome = function (path) {
+    //Call route when button clicked
+    $scope.go = function (path) {
       $location.path(path);
     };
-
-    //Call countries route when "Browse Countries" button clicked
-    $scope.goCountries = function (path) {
-      $location.path(path);
-    };
-
-
-
 
   });

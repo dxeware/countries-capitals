@@ -8,7 +8,7 @@
       <th>Population</th>
       <th>Continent</th>
     </tr>
-    <tr class="table-data" ng-repeat="country in results.geonames" ng-click="goDetail('/countries/' + country.countryCode + '/capital')">
+    <tr class="table-data" ng-repeat="country in results.geonames" ng-click="go('/countries/' + country.countryCode + '/capital')">
       <td>{{ country.countryName }}</td>
       <td>{{ country.countryCode }}</td>
       <td>{{ country.capital }}</td>
@@ -25,6 +25,6 @@
   <h1>Loading...</h1>
 </section>
 <section class="flow stretch">
-  <button ng-click="goHome('/')">Home
+  <button ng-click="go('/')">Home
   </button>
 </section>

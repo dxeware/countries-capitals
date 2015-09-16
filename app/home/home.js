@@ -9,8 +9,8 @@ viewsModule
   .controller('HomeCtrl', function($scope, $location) {
     $scope.pageClass = 'page-home';
 
-    //Call countries route when button clicked
-    $scope.goCountries = function (path) {
+    //Call route when button clicked
+    $scope.go = function (path) {
       $location.path(path);
     };
 
