@@ -8,7 +8,6 @@ viewsModule
 
   .controller('CapitalsCtrl', function($scope, $location, $routeParams, ccCountries, ccCapitals, ccNeighbours) {
     $scope.pageClass = 'page-capitals';
-    $scope.country = '';
     $scope.errPresent = false;
     $scope.errorMsg = '';
     $scope.dataReady = false;
@@ -16,9 +15,7 @@ viewsModule
     $scope.capitalInfo = {};
     $scope.neighbours = {};
     var countryInfo = {};
-
-    $scope.country = $routeParams.country;
-
+    //$scope.country = $routeParams.country;
 
     ccCountries().then(
       function(result) {
@@ -55,7 +52,7 @@ viewsModule
                 }
               }
             }
-          ).catch(serverError); // then
+          ).catch(serverError); // then ccCapitals
 
 
           ccNeighbours($scope.thisCountryInfo.geonameId).then(
