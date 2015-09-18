@@ -22,14 +22,17 @@ viewsModule
         // Check if an error message is present,
         // otherwise display results
         if ( result.status ) {
+          debug("status = true");
           $scope.errorMsg = "Error: " + result.status.message + " [Error code: " + result.status.value + "]";
           $scope.errPresent = true;
         } else {
+          debug("status = false");
           $scope.results = result;
           $scope.dataReady = true;
         }
       },
       function() {
+        debug("error returned from ccCountries!!");
         $scope.errorMsg = "Error: the call to the server has FAILED!";
         $scope.errPresent = true;
       }

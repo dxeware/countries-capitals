@@ -15,11 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js',
-      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min.js',
-      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js',
-      'http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-mocks.js',
-      './node_modules/requirejs/require.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-animate.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-mocks.js',
       './app/**/*Spec.js',
       './app/*.js',
       './app/**/*.js'
