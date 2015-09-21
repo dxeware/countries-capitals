@@ -17,7 +17,7 @@ describe("ccAppViews", function() {
     beforeEach(inject(function($controller, $rootScope, $location,
                                 $routeParams, CC_COUNTRY_INFO, CC_USERNAME,
                                 CC_SEARCH_PREFIX, CC_Q, CC_COUNTRY,
-                                CC_NAME_EQUALS, CC_FCODE){
+                                CC_NAME_EQUALS, CC_FCODE, CC_NEIGHBORS_PREFIX){
       location = $location;
       $routeParams.country = 'LT';
       scope = $rootScope.$new();
@@ -34,13 +34,13 @@ describe("ccAppViews", function() {
       cc_country = CC_COUNTRY;
       cc_name_equals = CC_NAME_EQUALS;
       cc_fcode = CC_FCODE;
+      cc_neighbours_prefix = CC_NEIGHBORS_PREFIX;
     }));
 
     // Check some defaults
     it('should have some variables defined', function(){
       // Check if they are defined
       expect(scope.pageClass).toBeDefined();
-      //expect(scope.country).toBeDefined();
       expect(scope.errorMsg).toBeDefined();
       expect(scope.errPresent).toBeDefined();
       expect(scope.dataReady).toBeDefined();
@@ -68,7 +68,7 @@ describe("ccAppViews", function() {
     });
 
     // Check success while loading data from Service
-    it('should have dataReady when API returns success', inject(function(ccCountries, $httpBackend, $rootScope){
+    it('should have capital info and neighbour info when countries, capitals and neighbours APIs return success', inject(function(ccCountries, $httpBackend, $rootScope){
       var result1 = {}, result2 = {}, result3 = {};
       result1.geonames = [ {
           capital: 'Vilnius',
@@ -85,10 +85,7 @@ describe("ccAppViews", function() {
           countryName: 'Belarus'
         }];
 
-
       // Act on JSONP request
-      //$httpBackend.expect('GET', cc_country_info+cc_username)
-      //  .respond(result1);
       $httpBackend.expect('GET', cc_country_info+cc_username)
         .respond(result1);
       // Trigger Angular's digest cycle
@@ -101,7 +98,7 @@ describe("ccAppViews", function() {
         .respond(result2);
 
       // Act on JSONP request
-      $httpBackend.expect('GET', 'http://api.geonames.org/neighboursJSON?geonameId=597427&username=dxeware')
+      $httpBackend.expect('GET', cc_neighbours_prefix+result1.geonames[0].geonameId+'&'+cc_username)
         .respond(result3);
 
       // Ensure that the HTTP mock code is applied
@@ -113,6 +110,93 @@ describe("ccAppViews", function() {
 
       // when ccNeighbours API succeeds, expect results
       expect(scope.neighbours.geonames[0].countryName).toBe('Belarus');
+
+      // Ensure test is run
+      $httpBackend.verifyNoOutstandingRequest();
+    }));
+
+    // Check errors when ccCapitals fails with error 404
+    it('should have error when capital API fails', inject(function(ccCountries, $httpBackend, $rootScope){
+      var result1 = {}, result2 = {}, result3 = {};
+      result1.geonames = [ {
+          capital: 'Vilnius',
+          countryCode: 'LT',
+          geonameId: 597427
+        }];
+
+      result2.geonames = [ {
+          name: 'Vilnius',
+          countryCode: 'LT'
+        }];
+
+      result3.geonames = [ {
+          countryName: 'Belarus'
+        }];
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_country_info+cc_username)
+        .respond(result1);
+      // Trigger Angular's digest cycle
+      $rootScope.$digest();
+
+      ccCountries();
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_search_prefix+cc_q+result1.geonames[0].capital+'&'+cc_country+result1.geonames[0].countryCode+'&'+cc_name_equals+result1.geonames[0].capital+'&isNameRequired=true&'+cc_fcode+'&'+cc_username)
+        .respond(404);
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_neighbours_prefix+result1.geonames[0].geonameId+'&'+cc_username)
+        .respond(result3);
+
+      // Ensure that the HTTP mock code is applied
+      $httpBackend.flush();
+
+      // When the api gives an error the error message should be set
+      expect(scope.errPresent).toBe(true);
+      expect(scope.errorMsg).toBe('CATCH Error: the call to the server has FAILED!');
+
+      // Ensure test is run
+      $httpBackend.verifyNoOutstandingRequest();
+    }));
+
+    // Check errors when ccNeighbours fails - API returns a status element
+    it('should have error when capital API fails', inject(function(ccCountries, $httpBackend, $rootScope){
+      var result1 = {}, result2 = {}, result3 = {};
+      result1.geonames = [ {
+          capital: 'Vilnius',
+          countryCode: 'LT',
+          geonameId: 597427
+        }];
+
+      result2.geonames = [ {
+          name: 'Vilnius',
+          countryCode: 'LT'
+        }];
+
+      result3.status = true;
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_country_info+cc_username)
+        .respond(result1);
+      // Trigger Angular's digest cycle
+      $rootScope.$digest();
+
+      ccCountries();
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_search_prefix+cc_q+result1.geonames[0].capital+'&'+cc_country+result1.geonames[0].countryCode+'&'+cc_name_equals+result1.geonames[0].capital+'&isNameRequired=true&'+cc_fcode+'&'+cc_username)
+        .respond(result2);
+
+      // Act on JSONP request
+      $httpBackend.expect('GET', cc_neighbours_prefix+result1.geonames[0].geonameId+'&'+cc_username)
+        .respond(result3);
+
+      // Ensure that the HTTP mock code is applied
+      $httpBackend.flush();
+
+      // When the api gives an error the error message should be set
+      expect(scope.neighbours.errMsg).toBe('Server returned error - no neighbours returned!');
 
       // Ensure test is run
       $httpBackend.verifyNoOutstandingRequest();
@@ -160,6 +244,7 @@ describe("ccAppViews", function() {
       // Ensure test is run
       $httpBackend.verifyNoOutstandingRequest();
     }));
+
   });
 
 });
