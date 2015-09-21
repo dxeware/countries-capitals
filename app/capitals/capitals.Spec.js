@@ -91,8 +91,6 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
 
-      ccCountries();
-
       // Act on JSONP request
       $httpBackend.expect('GET', cc_search_prefix+cc_q+result1.geonames[0].capital+'&'+cc_country+result1.geonames[0].countryCode+'&'+cc_name_equals+result1.geonames[0].capital+'&isNameRequired=true&'+cc_fcode+'&'+cc_username)
         .respond(result2);
@@ -139,8 +137,6 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
 
-      ccCountries();
-
       // Act on JSONP request
       $httpBackend.expect('GET', cc_search_prefix+cc_q+result1.geonames[0].capital+'&'+cc_country+result1.geonames[0].countryCode+'&'+cc_name_equals+result1.geonames[0].capital+'&isNameRequired=true&'+cc_fcode+'&'+cc_username)
         .respond(404);
@@ -182,8 +178,6 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
 
-      ccCountries();
-
       // Act on JSONP request
       $httpBackend.expect('GET', cc_search_prefix+cc_q+result1.geonames[0].capital+'&'+cc_country+result1.geonames[0].countryCode+'&'+cc_name_equals+result1.geonames[0].capital+'&isNameRequired=true&'+cc_fcode+'&'+cc_username)
         .respond(result2);
@@ -209,7 +203,7 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
       var status = false;
-      ccCountries();
+
       // Ensure that the HTTP mock code is applied
       $httpBackend.flush();
 
@@ -232,8 +226,6 @@ describe("ccAppViews", function() {
         .respond(result);
       // Trigger Angular's digest cycle
       $rootScope.$digest();
-
-      ccCountries();
 
       // Ensure that the HTTP mock code is applied
       $httpBackend.flush();

@@ -62,8 +62,6 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
 
-      ccCountries();
-
       // Ensure that the HTTP mock code is applied
       $httpBackend.flush();
       // When the api gives an error the error message should be set
@@ -81,7 +79,7 @@ describe("ccAppViews", function() {
       // Trigger Angular's digest cycle
       $rootScope.$digest();
       var status = false;
-      ccCountries();
+
       // Ensure that the HTTP mock code is applied
       $httpBackend.flush();
       // When the api gives an error the error message should be set
@@ -103,8 +101,6 @@ describe("ccAppViews", function() {
         .respond(result);
       // Trigger Angular's digest cycle
       $rootScope.$digest();
-
-      ccCountries();
 
       // Ensure that the HTTP mock code is applied
       $httpBackend.flush();
